@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Bouquet Just For You ♡</title>
+<title>Just For You ♡</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
@@ -338,6 +338,13 @@ body {
       <h1 class="recipient" id="recipient"></h1>
       <p class="personal" id="personal"></p>
       <div class="sender" id="sender"></div>
+      <div class="music-box">
+  <div class="music-label">A SONG FOR YOU ♡</div>
+  <button id="playMusic" onclick="playSong()">
+    ♫ song
+  </button>
+  <div id="musicPlayer"></div>
+</div>
       <button class="replay" onclick="replay()">WATCH AGAIN ♡</button>
     </section>
 
@@ -352,8 +359,8 @@ body {
 
 const giftConfig = {
   recipient: "Someone Special",
-  sender: "With love, Your Name",
-  message: "I may not be there to give you flowers, but I made this little bouquet just for you. ♡"
+  sender: "ALvinooo",
+  message: "For the flowers that never have to say goodbye. May these bloom forever, just for you. ♡♡"
 };
 
 /* =================================
