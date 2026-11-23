@@ -3,21 +3,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#071323">
 <title>A Bouquet Just For You ♡</title>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
 
-:root {
-  --navy: #071323;
-  --blue: #83B2DF;
-  --powder: #B7D5F2;
-  --ice: #DFEDFC;
+* {
+  box-sizing: border-box;
 }
-
-* { box-sizing: border-box; }
 
 html {
   min-height: 100%;
@@ -29,43 +24,36 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  background: radial-gradient(
-    ellipse at 50% 38%,
-    #193451 0%,
-    #0B1C30 48%,
-    #050C17 100%
-  );
+  background: radial-gradient(ellipse at center, #193451, #0B1C30 55%, #050C17);
   color: white;
   font-family: 'DM Sans', sans-serif;
 }
 
 #scene {
   position: relative;
-  min-height: 100svh;
-  width: 100%;
+  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   overflow: hidden;
   isolation: isolate;
 }
 
 .glow {
   position: absolute;
-  width: min(75vw, 480px);
-  aspect-ratio: 1;
+  width: 450px;
+  height: 450px;
   border-radius: 50%;
   background: #83B2DF;
-  filter: blur(115px);
-  opacity: .13;
-  pointer-events: none;
-  animation: glow 6s ease-in-out infinite alternate;
+  filter: blur(120px);
+  opacity: .15;
   z-index: -1;
+  animation: glow 6s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
-  from { transform: scale(.85); opacity: .08; }
-  to { transform: scale(1.2); opacity: .19; }
+  from { transform: scale(.8); opacity: .08; }
+  to { transform: scale(1.2); opacity: .2; }
 }
 
 .stars {
@@ -77,32 +65,30 @@ body {
 
 .star {
   position: absolute;
-  color: #C8E4FF;
+  color: #D5E9FC;
   animation: twinkle var(--duration) ease-in-out infinite alternate;
-  opacity: .3;
 }
 
 @keyframes twinkle {
-  from { opacity: .12; transform: scale(.7); }
-  to { opacity: .85; transform: scale(1.3); }
+  from { opacity: .1; transform: scale(.7); }
+  to { opacity: .9; transform: scale(1.3); }
 }
 
 .content {
-  position: relative;
-  z-index: 2;
   width: min(100%, 680px);
-  padding: 38px 20px 58px;
+  padding: 35px 20px 60px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 .intro {
+  color: #A9C9E8;
   font-size: 10px;
   letter-spacing: 5px;
-  color: #A9C9E8;
-  text-transform: uppercase;
   opacity: 0;
   animation: fadeIn 2s 1s forwards;
 }
@@ -112,9 +98,13 @@ body {
   width: min(100%, 510px);
   height: auto;
   overflow: visible;
-  margin: 8px 0 0;
   filter: drop-shadow(0 15px 35px #0008);
   animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 .flower {
@@ -124,19 +114,17 @@ body {
 }
 
 .flower.show {
-  animation:
-    bloom .9s cubic-bezier(.2,.8,.2,1) forwards,
-    sway 5s ease-in-out infinite 1s;
+  animation: bloom 1s ease forwards, sway 5s ease-in-out infinite 1s;
 }
 
 @keyframes bloom {
-  from { opacity: 0; scale: .15; }
+  from { opacity: 0; scale: .1; }
   to { opacity: 1; scale: 1; }
 }
 
 @keyframes sway {
-  0%, 100% { rotate: -1.2deg; }
-  50% { rotate: 1.2deg; }
+  0%, 100% { rotate: -1.5deg; }
+  50% { rotate: 1.5deg; }
 }
 
 .stem {
@@ -149,7 +137,7 @@ body {
 }
 
 .stem.show {
-  animation: grow 1.8s ease forwards;
+  animation: grow 2s ease forwards;
 }
 
 @keyframes grow {
@@ -158,30 +146,25 @@ body {
 
 .leaf {
   fill: #7FAD9E;
-  opacity: .9;
 }
 
-#ribbon { opacity: 0; }
+#ribbon {
+  opacity: 0;
+}
 
 #ribbon.show {
-  animation: fadeIn 1.2s forwards;
+  animation: fadeIn 1.5s forwards;
 }
 
 @keyframes fadeIn {
   to { opacity: 1; }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
 .message {
   width: 100%;
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 1.5s ease, transform 1.5s ease;
-  margin-top: 2px;
+  transform: translateY(15px);
+  transition: 1.5s ease;
 }
 
 .message.show {
@@ -191,110 +174,59 @@ body {
 
 .recipient {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(27px, 6vw, 42px);
+  font-size: clamp(30px, 6vw, 46px);
   font-weight: 400;
   color: #D5E9FC;
-  margin: 0 0 12px;
+  margin: 0 0 15px;
 }
 
 .personal {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(15px, 3.5vw, 20px);
+  font-size: clamp(16px, 3.5vw, 21px);
   font-style: italic;
-  line-height: 1.75;
+  line-height: 1.8;
   color: #E9F1FA;
-  max-width: 510px;
-  margin: 0 auto 15px;
+  max-width: 520px;
+  margin: 0 auto 20px;
 }
 
 .sender {
   color: #A9C9E8;
-  font-size: 12px;
-  letter-spacing: 2px;
-  margin-bottom: 22px;
-}
-
-/* MUSIC PLAYER */
-
-.music-box {
-  margin: 12px auto 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-}
-
-.music-label {
-  font-size: 9px;
+  font-size: 13px;
   letter-spacing: 3px;
+  margin-bottom: 20px;
+}
+
+.song-credit {
   color: #A9C9E8;
+  font-size: 10px;
+  letter-spacing: 2px;
+  margin-top: 12px;
 }
-
-#playMusic, .replay {
-  position: relative;
-  z-index: 5;
-  border: 1px solid #A9C9E877;
-  color: #D8E9F9;
-  background: #A9C9E817;
-  padding: 11px 23px;
-  border-radius: 30px;
-  font: inherit;
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  cursor: pointer;
-  transition: .3s;
-  pointer-events: auto;
-}
-
-#playMusic:hover, .replay:hover {
-  background: #A9C9E833;
-  border-color: #A9C9E8;
-  transform: translateY(-1px);
-}
-
-#playMusic:focus-visible, .replay:focus-visible {
-  outline: 2px solid #D5E9FC;
-  outline-offset: 4px;
-}
-
-#musicStatus {
-  min-height: 16px;
-  color: #A9C9E8;
-  font-size: 11px;
-}
-
-.replay {
-  margin-top: 18px;
-}
-
-/* FLOATING PETALS */
 
 .petal {
   position: fixed;
-  z-index: 1;
   pointer-events: none;
   color: #C9E3FA;
+  z-index: 1;
   animation: drift linear forwards;
-  opacity: 0;
 }
 
 @keyframes drift {
   0% {
     opacity: 0;
-    transform: translate(0,0) rotate(0);
+    transform: translateY(0) rotate(0);
   }
   15% { opacity: .8; }
   100% {
     opacity: 0;
-    transform: translate(var(--x),-110vh) rotate(300deg);
+    transform: translate(var(--x), -110vh) rotate(300deg);
   }
 }
 
-/* MOBILE */
-
-@media(max-width:480px) {
+@media(max-width: 480px) {
   .content {
-    padding: 30px 14px 48px;
+    padding: 30px 14px 50px;
   }
 
   #bouquet {
@@ -303,8 +235,8 @@ body {
   }
 
   .intro {
-    letter-spacing: 3px;
     font-size: 9px;
+    letter-spacing: 3px;
   }
 
   .personal {
@@ -312,23 +244,11 @@ body {
   }
 }
 
-@media(max-height:720px) and (min-width:600px) {
-  .content {
-    padding-top: 20px;
-    padding-bottom: 35px;
-  }
-
-  #bouquet {
-    width: min(100%,390px);
-  }
-}
-
-@media(prefers-reduced-motion:reduce) {
+@media(prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 </style>
@@ -343,14 +263,9 @@ body {
 
   <main class="content">
 
-    <div class="intro">
-      A LITTLE SOMETHING FOR YOU
-    </div>
+    <div class="intro">A LITTLE SOMETHING FOR YOU</div>
 
-    <svg id="bouquet"
-      viewBox="0 0 600 610"
-      role="img"
-      aria-label="A floating blue and white flower bouquet"
+    <svg id="bouquet" viewBox="0 0 600 610"
       xmlns="http://www.w3.org/2000/svg">
 
       <defs>
@@ -372,7 +287,7 @@ body {
           <stop offset="100%" stop-color="#DCE8F3"/>
         </radialGradient>
 
-        <linearGradient id="stemColor" x1="0" y1="0" x2="1" y2="1">
+        <linearGradient id="stemColor">
           <stop offset="0%" stop-color="#B1D4C1"/>
           <stop offset="100%" stop-color="#547E75"/>
         </linearGradient>
@@ -393,35 +308,20 @@ body {
       <g id="baby"></g>
 
       <g id="wrapping">
-        <path
-          d="M180 390 Q300 450 420 390 L365 570 Q300 590 235 570 Z"
+        <path d="M180 390 Q300 450 420 390 L365 570 Q300 590 235 570 Z"
           fill="#B5D2ED" opacity=".88"/>
-
-        <path
-          d="M180 390 Q300 450 420 390 L365 570 Q300 590 235 570 Z"
-          fill="none" stroke="#E1EDFA" stroke-width="2" opacity=".6"/>
-
-        <path
-          d="M220 425 Q300 475 380 425"
-          fill="none" stroke="#FFFFFF" stroke-width="2" opacity=".4"/>
+        <path d="M180 390 Q300 450 420 390 L365 570 Q300 590 235 570 Z"
+          fill="none" stroke="#E1EDFA" stroke-width="2"/>
       </g>
 
       <g id="ribbon">
-
-        <path
-          d="M300 465 C245 415 205 450 267 490 L300 472"
+        <path d="M300 465 C245 415 205 450 267 490 L300 472"
           fill="#83B2DF" stroke="#D5E9FC" stroke-width="2"/>
-
-        <path
-          d="M300 465 C355 415 395 450 333 490 L300 472"
+        <path d="M300 465 C355 415 395 450 333 490 L300 472"
           fill="#A9C9E8" stroke="#D5E9FC" stroke-width="2"/>
-
-        <path
-          d="M300 465 L278 540 L305 530 L322 470"
+        <path d="M300 465 L278 540 L305 530 L322 470"
           fill="#7FAAD4" stroke="#D5E9FC" stroke-width="1.5"/>
-
         <circle cx="300" cy="465" r="9" fill="#E5EFF8"/>
-
       </g>
 
     </svg>
@@ -434,40 +334,25 @@ body {
 
       <div class="sender" id="sender"></div>
 
-      <!-- MUSIC PLAYER -->
-
-      <div class="music-box">
-
-        <div class="music-label">
-          A SONG FOR YOU ♡
-        </div>
-
-        <button id="playMusic" type="button">
-          ♫ Play Hanya Untukmu
-        </button>
-
-        <div id="musicStatus" role="status" aria-live="polite"></div>
-
-        <audio id="song" preload="metadata">
-  <source src="./Ten2Five%20-%20Hanya%20Untukmu%20(Official%20Audio%20Lyric).mp3" type="audio/mpeg">
-</audio>
-
+      <div class="song-credit">
+        ♫ HANYA UNTUKMU — TEN 2 FIVE
       </div>
-
-      <button class="replay" id="replayButton" type="button">
-        WATCH AGAIN ♡
-      </button>
 
     </section>
 
   </main>
 </div>
 
+<!-- BACKGROUND MUSIC -->
+<audio id="song" autoplay loop preload="auto">
+  <source
+    src="./Ten2Five%20-%20Hanya%20Untukmu%20(Official%20Audio%20Lyric).mp3"
+    type="audio/mpeg">
+</audio>
+
 <script>
 
-/* =================================
-   EDIT YOUR PERSONAL GIFT HERE
-================================= */
+/* PERSONAL DETAILS */
 
 const giftConfig = {
   recipient: "Someone Special",
@@ -476,14 +361,11 @@ const giftConfig = {
 };
 
 
-/* =================================
-   FLOWER DATA
-================================= */
+/* FLOWER ARRANGEMENT */
 
 const svgNS = "http://www.w3.org/2000/svg";
 
 const flowers = [
-
   {type:"lily",x:160,y:170,color:"url(#bluePetal)",delay:2.2},
   {type:"rose",x:245,y:125,color:"url(#deepPetal)",delay:2.8},
   {type:"lily",x:340,y:105,color:"url(#bluePetal)",delay:3.4},
@@ -496,12 +378,10 @@ const flowers = [
   {type:"rose",x:180,y:335,color:"url(#deepPetal)",delay:6.6},
   {type:"daisy",x:280,y:330,color:"url(#whitePetal)",delay:7},
   {type:"rose",x:370,y:350,color:"url(#bluePetal)",delay:7.4}
-
 ];
 
 
 function svgElement(name,attrs={}) {
-
   const el = document.createElementNS(svgNS,name);
 
   Object.entries(attrs).forEach(([key,value]) => {
@@ -531,26 +411,16 @@ function makeFlower(f) {
     let rx,ry,fill;
 
     if(f.type==="lily") {
-      rx=13;
-      ry=33;
-      fill=f.color;
+      rx=13; ry=33; fill=f.color;
     }
-
     else if(f.type==="daisy") {
-      rx=7;
-      ry=22;
-      fill="url(#whitePetal)";
+      rx=7; ry=22; fill="url(#whitePetal)";
     }
-
     else if(f.type==="peony") {
-      rx=12;
-      ry=24;
-      fill="url(#whitePetal)";
+      rx=12; ry=24; fill="url(#whitePetal)";
     }
-
     else {
-      rx=12;
-      ry=22;
+      rx=12; ry=22;
       fill=i%2===0 ? f.color : "url(#bluePetal)";
     }
 
@@ -562,10 +432,9 @@ function makeFlower(f) {
       fill,
       transform:`rotate(${angle})`,
       stroke:"#FFFFFF",
-      "stroke-opacity":".15",
+      "stroke-opacity":".2",
       "stroke-width":".8"
     }));
-
   }
 
   const centerColor =
@@ -584,18 +453,15 @@ function makeFlower(f) {
   }));
 
   if(f.type==="rose") {
-
     g.appendChild(svgElement("path",{
       d:"M-6 -2 Q-9 -12 1 -9 Q11 -5 5 5 Q0 10 -5 5 Q-10 0 -2 -4",
       fill:"#C4DDF5",
       stroke:"#FFFFFF",
       "stroke-opacity":".5"
     }));
-
   }
 
   return g;
-
 }
 
 
@@ -608,7 +474,6 @@ function createStem(f) {
   });
 
   document.getElementById("stems").appendChild(stem);
-
 }
 
 
@@ -622,9 +487,9 @@ function makeBabyBreath() {
     [250,300],[335,290],[390,300],[180,235]
   ];
 
-  branches.forEach(([x,y],i)=>{
+  branches.forEach(([x,y],i) => {
 
-    for(let j=0;j<3;j++){
+    for(let j=0;j<3;j++) {
 
       const dot = svgElement("circle",{
         cx:x+(j-1)*9,
@@ -638,125 +503,74 @@ function makeBabyBreath() {
       dot.dataset.delay=7.8+i*.08;
 
       layer.appendChild(dot);
-
     }
-
   });
-
 }
 
 
 function buildBouquet() {
 
-  document.getElementById("stems").innerHTML="";
-  document.getElementById("flowers").innerHTML="";
-  document.getElementById("baby").innerHTML="";
+  const stems = document.getElementById("stems");
+  const flowerLayer = document.getElementById("flowers");
 
-  flowers.forEach(f=>{
+  flowers.forEach(f => {
 
     createStem(f);
 
-    const flower=makeFlower(f);
-
+    const flower = makeFlower(f);
     flower.dataset.delay=f.delay;
 
-    document.getElementById("flowers").appendChild(flower);
+    flowerLayer.appendChild(flower);
 
   });
 
   makeBabyBreath();
-
 }
 
 
-/* =================================
-   LOCAL MP3 MUSIC PLAYER
-
-   Upload hanya-untukmu.mp3
-   beside index.html in GitHub.
-================================= */
+/* BACKGROUND MUSIC */
 
 const song = document.getElementById("song");
 
-const playButton = document.getElementById("playMusic");
+song.volume = 0.65;
 
-const musicStatus = document.getElementById("musicStatus");
+async function startMusic() {
+  if (!song.paused) return;
 
-
-playButton.addEventListener("click",async()=>{
-
-  if(song.paused){
-
-    try {
-
-      await song.play();
-
-      playButton.textContent="Ⅱ Pause song";
-
-      musicStatus.textContent=
-        "Now playing · Hanya Untukmu — Ten 2 Five";
-
-    }
-
-    catch(error){
-
-      musicStatus.textContent=
-        "Audio not found. Upload hanya-untukmu.mp3 beside index.html.";
-
-    }
-
+  try {
+    await song.play();
+  } catch(error) {
+    // Browser blocks autoplay until user interaction.
   }
+}
 
-  else {
+// Attempt autoplay when the website opens.
+startMusic();
 
-    song.pause();
+// If autoplay is blocked, the first touch anywhere starts the song.
+document.addEventListener("pointerdown", startMusic, {
+  once: true
+});
 
-    playButton.textContent="♫ Play Hanya Untukmu";
-
-    musicStatus.textContent="Paused";
-
-  }
-
+document.addEventListener("keydown", startMusic, {
+  once: true
 });
 
 
-song.addEventListener("ended",()=>{
-
-  playButton.textContent="♫ Play Hanya Untukmu";
-
-  musicStatus.textContent="Song finished ♡";
-
-});
-
-
-song.addEventListener("error",()=>{
-
-  musicStatus.textContent=
-    "Audio file not found. Upload hanya-untukmu.mp3 to the repository.";
-
-});
-
-
-/* =================================
-   STARS
-================================= */
+/* STARS */
 
 function createStars() {
 
-  const container=document.getElementById("stars");
+  const container = document.getElementById("stars");
 
-  container.innerHTML="";
+  for(let i=0;i<65;i++) {
 
-  for(let i=0;i<65;i++){
-
-    const star=document.createElement("span");
+    const star = document.createElement("span");
 
     star.className="star";
-
-    star.textContent=i%3===0?"✦":"·";
+    star.textContent=i%3===0 ? "✦" : "·";
 
     star.style.left=Math.random()*100+"%";
-
     star.style.top=Math.random()*100+"%";
 
     star.style.setProperty(
@@ -765,41 +579,30 @@ function createStars() {
     );
 
     star.style.animationDelay=Math.random()*4+"s";
-
     star.style.fontSize=(5+Math.random()*10)+"px";
 
     container.appendChild(star);
-
   }
-
 }
 
 
-/* =================================
-   FLOATING PETALS
-================================= */
-
-let petalInterval;
+/* FLOATING PETALS */
 
 function floatingPetals() {
 
-  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-    return;
-  }
+  if(window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  clearInterval(petalInterval);
-
-  petalInterval=setInterval(()=>{
+  setInterval(() => {
 
     const petal=document.createElement("div");
 
     petal.className="petal";
 
-    petal.textContent=
-      ["✧","·","❋","♡"][Math.floor(Math.random()*4)];
+    petal.textContent=["✧","·","❋","♡"][
+      Math.floor(Math.random()*4)
+    ];
 
     petal.style.left=Math.random()*100+"vw";
-
     petal.style.bottom="-15px";
 
     petal.style.fontSize=(9+Math.random()*12)+"px";
@@ -809,129 +612,65 @@ function floatingPetals() {
       (Math.random()*140-70)+"px"
     );
 
-    petal.style.animationDuration=
-      (7+Math.random()*7)+"s";
+    petal.style.animationDuration=(7+Math.random()*7)+"s";
 
     document.body.appendChild(petal);
 
-    setTimeout(()=>petal.remove(),15000);
+    setTimeout(() => petal.remove(),15000);
 
   },1300);
-
 }
 
 
-/* =================================
-   REVEAL ANIMATION
-================================= */
-
-let timers=[];
-
-function clearTimers() {
-
-  timers.forEach(clearTimeout);
-
-  timers=[];
-
-}
-
-
-function later(callback,delay) {
-
-  timers.push(setTimeout(callback,delay));
-
-}
-
+/* FLOWER REVEAL */
 
 function reveal() {
 
-  clearTimers();
+  document.querySelectorAll(".stem").forEach((stem,i) => {
 
-  document.querySelectorAll(".flower").forEach(f=>{
-    f.classList.remove("show");
-  });
-
-  document.querySelectorAll(".stem").forEach(s=>{
-    s.classList.remove("show");
-  });
-
-  document.getElementById("ribbon").classList.remove("show");
-
-  document.getElementById("message").classList.remove("show");
-
-
-  document.querySelectorAll(".stem").forEach((s,i)=>{
-
-    later(
-      ()=>s.classList.add("show"),
-      800+i*100
-    );
+    setTimeout(() => {
+      stem.classList.add("show");
+    },800+i*100);
 
   });
 
+  document.querySelectorAll(".flower").forEach(flower => {
 
-  document.querySelectorAll(".flower").forEach(f=>{
+    const delay=parseFloat(flower.dataset.delay||2)*1000;
 
-    later(
-      ()=>f.classList.add("show"),
-      parseFloat(f.dataset.delay||2)*1000
-    );
+    setTimeout(() => {
+      flower.classList.add("show");
+    },delay);
 
   });
 
+  setTimeout(() => {
+    document.getElementById("ribbon").classList.add("show");
+  },8200);
 
-  later(
-    ()=>document.getElementById("ribbon").classList.add("show"),
-    8200
-  );
-
-  later(
-    ()=>document.getElementById("message").classList.add("show"),
-    9500
-  );
-
+  setTimeout(() => {
+    document.getElementById("message").classList.add("show");
+  },9500);
 }
 
 
-function replay() {
+/* PERSONAL MESSAGE */
 
-  reveal();
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-}
-
-
-/* =================================
-   PERSONAL MESSAGE
-================================= */
-
-document.getElementById("recipient").textContent=
+document.getElementById("recipient").textContent =
   giftConfig.recipient;
 
-document.getElementById("personal").textContent=
+document.getElementById("personal").textContent =
   giftConfig.message;
 
-document.getElementById("sender").textContent=
+document.getElementById("sender").textContent =
   giftConfig.sender;
 
-document.getElementById("replayButton")
-  .addEventListener("click",replay);
 
-
-/* =================================
-   START WEBSITE
-================================= */
+/* START WEBSITE */
 
 buildBouquet();
-
 createStars();
-
 floatingPetals();
-
 reveal();
 
 </script>
