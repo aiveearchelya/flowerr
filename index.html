@@ -549,21 +549,26 @@ function buildBouquet() {
   makeBabyBreath();
 }
 
-  function playSong() {
+  
+function playSong() {
   const player = document.getElementById("musicPlayer");
   const button = document.getElementById("playMusic");
 
   player.innerHTML = `
     <iframe
-      src="https://www.youtube.com/embed/xReT7IrqOGk?autoplay=1&rel=0"
-      title="Hanya UntukMu - Ten2Five"
-      allow="autoplay; encrypted-media; picture-in-picture"
+      width="280"
+      height="158"
+      src="https://www.youtube-nocookie.com/embed/f6Vo9jK_nnw?autoplay=1&playsinline=1"
+      title="Hanya Untukmu - Ten2Five"
+      allow="autoplay; encrypted-media"
+      referrerpolicy="strict-origin-when-cross-origin"
       allowfullscreen>
     </iframe>
   `;
 
-  button.textContent = "♫ Now playing";
-  button.disabled = true;
+  button.textContent = "♫song";
+}
+
 }
 
 /* =================================
