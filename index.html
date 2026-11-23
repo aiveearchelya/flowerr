@@ -9,6 +9,45 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
 
+  .music-box {
+  margin-top: 22px;
+}
+
+.music-label {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #A9C9E8;
+  margin-bottom: 12px;
+}
+
+#playMusic {
+  background: rgba(169,201,232,.10);
+  border: 1px solid rgba(169,201,232,.45);
+  color: #E5EFF8;
+  border-radius: 30px;
+  padding: 12px 25px;
+  font-family: inherit;
+  font-size: 12px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+#playMusic:hover {
+  background: rgba(169,201,232,.25);
+}
+
+#musicPlayer {
+  margin-top: 15px;
+}
+
+#musicPlayer iframe {
+  width: min(280px, 85vw);
+  height: 158px;
+  border: none;
+  border-radius: 12px;
+}
+  
 :root {
   --navy: #071323;
   --blue: #83B2DF;
@@ -508,6 +547,23 @@ function buildBouquet() {
   });
 
   makeBabyBreath();
+}
+
+  function playSong() {
+  const player = document.getElementById("musicPlayer");
+  const button = document.getElementById("playMusic");
+
+  player.innerHTML = `
+    <iframe
+      src="https://www.youtube.com/embed/f6Vo9jK_nnw?autoplay=1"
+      title="Hanya UntukMu - Ten2Five"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+  `;
+
+  button.textContent = "♫ Now playing";
+  button.disabled = true;
 }
 
 /* =================================
